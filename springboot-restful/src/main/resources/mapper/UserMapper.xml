@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.spring.springboot.dao.UserDao">
+    <resultMap id="BaseResultMap" type="org.spring.springboot.domain.User">
+        <result column="id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="pass_word" property="passWord" />
+    </resultMap>
+
+    <parameterMap id="User" type="org.spring.springboot.domain.User"/>
+
+    <sql id="Base_Column_List">
+        id, user_name, pass_word
+    </sql>
+
+    <!--<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List" />-->
+        <!--from city-->
+        <!--where id = #{id}-->
+    <!--</select>-->
+
+    <select id="getUsers" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+    </select>
+
+    <insert id="saveUser" parameterMap="User" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        user(id,user_name,pass_word)
+        values
+        (#{id},#{userName},#{passWord})
+    </insert>
+
+    <!--<update id="updateCity" parameterMap="City">-->
+        <!--update-->
+        <!--city-->
+        <!--set-->
+        <!--<if test="provinceId!=null">-->
+            <!--province_id = #{provinceId},-->
+        <!--</if>-->
+        <!--<if test="cityName!=null">-->
+            <!--city_name = #{cityName},-->
+        <!--</if>-->
+        <!--<if test="description!=null">-->
+            <!--description = #{description}-->
+        <!--</if>-->
+        <!--where-->
+        <!--id = #{id}-->
+    <!--</update>-->
+
+    <!--<delete id="deleteCity" parameterType="java.lang.Long">-->
+        <!--delete from-->
+        <!--city-->
+        <!--where-->
+        <!--id = #{id}-->
+    <!--</delete>-->
+</mapper>
